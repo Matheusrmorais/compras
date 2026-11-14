@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Compras {
     private double saldo;
     private String descricao;
@@ -40,4 +43,8 @@ public class Compras {
 
 
 
+    @Override
+    public String toString() {
+        return "\n\nDescrição: " + getDescricao() + "\nValor compra: " + getValorCompra() ;
+    }
 }
