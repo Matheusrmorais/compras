@@ -2,6 +2,7 @@ import Calculos.Calculo;
 import model.Compras;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class Principal {
        compras.setEscolha(1);
        Calculo calculo = new Calculo();
        List<Compras> listaCompras = new ArrayList<>();
+       Scanner input = new Scanner(System.in);
 
        // Loop até a escolha for 0
        while (compras.getEscolha() != 0) {
@@ -28,7 +30,7 @@ public class Principal {
            System.out.println("0 - Sair");
 
            System.out.println("================================================");
-           Scanner input = new Scanner(System.in);
+
            compras.setEscolha(input.nextInt());
 
 
@@ -44,6 +46,7 @@ public class Principal {
                case 2:
                    Compras compraLista = new Compras();
 
+
                    System.out.println("Descrição Compra: ");
                    input.nextLine();
                    compraLista.setDescricao(input.nextLine());
@@ -51,11 +54,25 @@ public class Principal {
                    System.out.println("Valor compra: ");
                    compraLista.setValorCompra(input.nextDouble());
 
-                   listaCompras.add(compraLista);
+                   System.out.println(calculo.getSaldo());
+                   System.out.println(compraLista.getValorCompra());
+
+                   if (compraLista.getValorCompra() > calculo.getSaldo()) {
+                       System.out.println("Saldo insuficiente");
+                   } else {
+
+                       listaCompras.add(compraLista);
+                       System.out.println("Compra realizada com sucesso!");
+
+                   }
+                   calculo.setValor(calculo.getSaldo() - calculo.getValorCompra());
+                   System.out.println("Saldo atual: " + calculo.getSaldo());
                    break;
 
                    case 3:
-                       System.out.println(listaCompras);
+
+                       listaCompras.sort(Comparator.comparing(Compras::getValorCompra).reversed());
+                       System.out.println("Lista de compras: " + listaCompras);
                        break;
            }
        }
