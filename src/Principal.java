@@ -73,6 +73,7 @@ public class Principal {
 
                        listaCompras.sort(Comparator.comparing(Compras::getValorCompra).reversed());
                        System.out.println("Lista de compras: " + listaCompras);
+                       System.out.println("teste");
                        break;
            }
        }
