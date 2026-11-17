@@ -1,4 +1,4 @@
-import Calculos.Calculo;
+import Calculos.CalculoCompras;
 import model.Compras;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class Principal {
        Compras compras = new Compras();
 
        compras.setEscolha(1);
-       Calculo calculo = new Calculo();
+       CalculoCompras calculo = new CalculoCompras();
        List<Compras> listaCompras = new ArrayList<>();
        Scanner input = new Scanner(System.in);
 
@@ -23,7 +23,7 @@ public class Principal {
            System.out.println("================================================");
 
            System.out.println("Menu");
-           System.out.println("1 - Definir saldo inicial");
+           System.out.println("1 - Adicionar Saldo");
            System.out.println("2 - Digite a descrição da compra e valor");
            System.out.println("3 - Visualizar compras");
            System.out.println("4 - Consultar saldo");
@@ -62,20 +62,29 @@ public class Principal {
                    } else {
 
                        listaCompras.add(compraLista);
+                       calculo.setSaldo(calculo.getSaldo() - compraLista.getValorCompra());
                        System.out.println("Compra realizada com sucesso!");
 
                    }
-                   calculo.setValor(calculo.getSaldo() - calculo.getValorCompra());
+
+
                    System.out.println("Saldo atual: " + calculo.getSaldo());
                    break;
 
                    case 3:
 
                        listaCompras.sort(Comparator.comparing(Compras::getValorCompra).reversed());
-                       System.out.println("Lista de compras: " + listaCompras);
-                       System.out.println("teste");
-                       System.out.println("testando");
+                       if (listaCompras.isEmpty()) {
+                           System.out.println("Carrinho de compras vazio!");
+
+                       }else {
+                           System.out.println("Lista de compras: " + listaCompras);
+                       }
+
+
                        break;
+                       case 4:
+                           System.out.println("Saldo atual: " + calculo.getSaldo());
            }
        }
 

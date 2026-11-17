@@ -2,7 +2,7 @@ package Calculos;
 
 import model.Compras;
 
-public class Calculo extends Compras {
+public class CalculoCompras extends Compras {
     private double valor;
 
 
